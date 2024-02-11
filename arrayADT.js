@@ -2,8 +2,6 @@
 
 // Array ADT (Abstract Data Type) is a model of a data structure that 
 // defines the operations that can be performed on a data structure. 
-// It is a mathematical model of a data structure that defines a set of
-// operations that can be performed on the data structure.
 
 // Function to create an array ADT
 function createArray(totalSize, usedSize) {
