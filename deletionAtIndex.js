@@ -23,7 +23,7 @@ function indexDeletion(arr, size, index) {
 function main() {
     let arr = [7, 8, 12, 27, 88];
     let size = 5;
-    index = 2;
+    const index = 1;
     display(arr, size);
     // Deleting element at index
     indexDeletion(arr, size, index);
