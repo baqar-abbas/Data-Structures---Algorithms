@@ -1,4 +1,4 @@
-// Program to implement Linear Search in C Language
+// Program to implement Binary Search in C Language
 #include <stdio.h>
 #include <conio.h>
 
