@@ -1,3 +1,7 @@
+// Program to implement Data Structure Linked List insertion operations in C language
+/* Description: This file contains the code to insert a new node at the head, 
+at a specific index, at the end, and after a specific node in a linked list. */
+
 // Data Structure Linked List Program for insertion and traversal in the Linked List
 #include <stdio.h>
 #include <conio.h>
@@ -20,6 +24,7 @@ void freeLinkedList(struct Node* head) {
     }
 }
 
+// Function to traverse the linked linked list and print the elements
 void linkedListTraversal(struct Node *ptr)
 {
     while(ptr!=NULL)
@@ -56,6 +61,34 @@ struct Node * insertAtIndex(struct Node *head, int data, int index)
     p->next = ptr;
 
     return head;
+};
+
+// Function to insert the node at the end of the Linked List
+struct Node * insertAtEnd(struct Node *head, int data)
+{
+    struct Node * ptr = (struct Node *) malloc(sizeof(struct Node));
+    struct Node * p = head;
+
+    while(p->next!=NULL)
+    {
+        p = p->next;
+    }
+    ptr->data = data;
+    ptr->next = NULL;
+    p->next = ptr;
+    return head;
+};
+
+// Function to insert a Node after a specific node of the Linked List
+struct Node * insertAfterNode(struct Node *head, struct Node *prevNode,int data)
+{
+struct Node * ptr = (struct Node *) malloc(sizeof(struct Node));
+ptr->data = data;
+
+ptr->next = prevNode->next;
+prevNode->next = ptr;
+
+return head;
 };
 
 int main()
@@ -97,7 +130,14 @@ int main()
 
     // Insert at specific index - This function won't work for insert at head
     // uncomment the function below to insert at a specific index in the Linked list
-    head = insertAtIndex(head, 56, 2);
+    // head = insertAtIndex(head, 56, 2);
+
+    // Insert at the end of the linked list
+    // un comment the function call below to insert node at the end of Linked list
+    // head = insertAtEnd(head, 56);
+
+    // Insert after a node in the linked list
+    head = insertAfterNode(head, second, 45);
 
     printf("Linked List after Insertion.\n");
 
