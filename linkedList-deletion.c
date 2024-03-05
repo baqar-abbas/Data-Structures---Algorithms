@@ -62,6 +62,43 @@ struct Node * deleteAtIndex(struct Node * head, int index)
     return head;
 };
 
+// Case 3: Function to delete a node at the end of the linked list
+struct Node * deleteAtEnd(struct Node * head)
+{
+struct Node *p = head;
+    struct Node *q = head->next;
+    while(q->next!=NULL)
+    {
+        p = p->next;
+        q = q->next;
+    }
+    p->next = NULL;
+    free(q);
+    return head;
+};
+
+// Case 4: function to delete a node with a specific value
+struct Node * deleteAtValue(struct Node * head, int value)
+{
+  struct Node * p = head;
+  struct Node * q = head->next;
+  while(q->data!=value && q->next != NULL)
+  {
+      p = p->next;
+      q = q->next;
+  }
+  if(q->data == value )
+  {
+      p->next = q->next;
+      free(q);
+  }
+  else
+  {
+      printf("Node with Element not found !!!");
+  }
+  return head;
+};
+
 int main()
 {
     // Declaring the nodes of the Linked list
@@ -100,7 +137,15 @@ int main()
     // Uncomment the function below to delete the Head node
     // head = deleteAtFirst(head);
 
-    head = deleteAtIndex(head, 2);
+        // Function to delete a node at index 2
+    // Uncomment the function call below to delete a node at index 2
+    // head = deleteAtIndex(head, 2);
+
+        // Function to delete a node at the end of the linked list
+    // Uncomment the function below to delete a node at the end
+    // head = deleteAtEnd(head);
+
+    head = deleteAtValue(head, 41);
 
     printf("Linked List after deletion\n");
     // Traverse through the linked list and print the elements
