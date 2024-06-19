@@ -127,4 +127,95 @@ void cleanup() {
     printf("Memory cleaned up\n");
 }
 
+// Output: Menu Driven Program
+/*
+*********Stack operations using linked list*********
 
+----------------------------------------------
+
+
+Choose one from the below options...
+
+1.Push
+2.Pop
+3.Show
+4.Exit
+Enter your choice
+1
+Enter the value
+10
+Item pushed
+
+
+Choose one from the below options...
+
+1.Push
+2.Pop
+3.Show
+4.Exit
+Enter your choice
+1
+Enter the value
+20
+Item pushed
+
+
+Choose one from the below options...
+
+1.Push
+2.Pop
+3.Show
+4.Exit
+Enter your choice
+1
+Enter the value
+30
+Item pushed
+
+
+Choose one from the below options...
+
+1.Push
+2.Pop
+3.Show
+4.Exit
+Enter your choice
+3
+Printing Stack elements
+30
+20
+10
+
+
+Choose one from the below options...
+
+1.Push
+2.Pop
+3.Show
+4.Exit
+Enter your choice
+2
+Item popped
+
+
+Choose one from the below options...
+
+1.Push
+2.Pop
+3.Show
+4.Exit
+Enter your choice
+3
+Printing Stack elements
+20
+10
+
+
+Choose one from the below options...
+
+1.Push
+2.Pop
+3.Show
+4.Exit
+Enter your choice
+*/
