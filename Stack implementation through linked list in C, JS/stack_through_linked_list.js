@@ -19,8 +19,6 @@ class LinkedList {
         const newNode = new Node(value);
         newNode.next = this.head;
         this.head = newNode;
-        console.log(newNode);
-        console.log(this.head);
     }
 
     // Pop function to remove elements from the stack
