@@ -1,4 +1,5 @@
 //Program to implement Linked List in C Sharp (C#)
+// Please note: We can use visual studio 2022 to run this program by creating a new console app project and copying the code below.
 
 using System;
 
