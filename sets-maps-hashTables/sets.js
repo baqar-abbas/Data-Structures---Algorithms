@@ -21,7 +21,42 @@ console.log("After removing 2 from Set A: ", setA);
 console.log("Set A has 3: ", setA.has(3));
 console.log("Set A has size: ", setA.size);
 
-// 2. SET THEORY OPERATIONS
+// 2. ALL SET METHODS DEMONSTRATION
+console.log("\n=== ALL SET METHODS ===");
+// entries() - Returns iterator of [value, value] pairs
+console.log("entries() method:");
+const entries = setA.entries();
+for (const entry of entries) {
+  console.log("  Entry:", entry);
+}
+
+// keys() - Returns iterator of values (same as values())
+console.log("keys() method:");
+const keys = setA.keys();
+for (const key of keys) {
+  console.log("  Key:", key);
+}
+
+// values() - Returns iterator of values
+console.log("values() method:");
+const values = setA.values();
+for (const value of values) {
+  console.log("  Value:", value);
+}
+
+// forEach() - Executes function for each value
+console.log("forEach() method:");
+setA.forEach((value) => {
+  console.log("  Value from forEach:", value);
+});
+
+// 3. SET PROPERTIES
+console.log("\n=== SET PROPERTIES ===");
+console.log("Set A size property:", setA.size);
+console.log("Set B size property:", setB.size);
+console.log("Set C size property:", setC.size);
+
+// 4. SET THEORY OPERATIONS
 console.log("\n=== SET THEORY OPERATIONS ===");
 
 // Union: A ∪ B (elements in A OR B)
@@ -43,7 +78,14 @@ const symmetricDifference = new Set([
 ]);
 console.log("Symmetric Difference A Δ B:", [...symmetricDifference]);
 
-// 3. SET ITERATION
+// 5. CLEAR METHOD
+console.log("\n=== CLEAR METHOD ===");
+const tempSet = new Set([10, 20, 30]);
+console.log("Temp set before clear:", tempSet);
+tempSet.clear();
+console.log("Temp set after clear:", tempSet);
+
+// 6. SET ITERATION
 console.log("\n=== SET ITERATION ===");
 console.log("Iterating through set A:");
 for (const item of setA) {
