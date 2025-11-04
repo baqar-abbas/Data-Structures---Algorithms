@@ -26,6 +26,7 @@ class BinaryTree
     end
   end
   
+  # BFS Traversal
   def bfs
     return [] if @root.nil?
     result, queue = [], [@root]
@@ -37,9 +38,70 @@ class BinaryTree
     end
     result
   end
+
+  # DFS Traversals
+
+   # 1. DFS Pre-order: Root → Left → Right
+   def pre_order(node = @root, result = [])
+   if node 
+    result << node.val
+    pre_order(node.left, result)
+    pre_order(node.right, result)
+    
+   end
+   result
+   end
+
+    # 2. DFS In-order: Left → Root → Right
+    def in_order(node = @root, result = [])
+    if node
+    in_order(node.left, result)
+    result << node.val
+    in_order(node.right, result)
+    end
+    result
+    end
+
+    # 3. DFS Post-order: Left → Right → Root
+    def post_order(node = @root, result = [])
+    if node 
+    post_order(node.left, result)
+    post_order(node.right, result)
+    result << node.val
+    end
+    result
+    end
+
 end
 
 # Demo
 tree = BinaryTree.new
 [10, 20, 30, 40, 50].each { |x| tree.insert(x) }
-puts tree.bfs.inspect  # [10, 20, 30, 40, 50]
+
+puts "Tree Structure:"
+puts "      10"
+puts "     /  \\"
+puts "    20   30"
+puts "   / \\"
+puts "  40  50"
+puts
+
+puts "BFS Traversal: #{tree.bfs.inspect}"
+puts "DFS Pre-order: #{tree.pre_order.inspect}"
+puts "DFS In-order: #{tree.in_order.inspect}"
+puts "DFS Post-order: #{tree.post_order.inspect}"
+
+=begin
+Tree Structure:
+      10
+     /  \
+    20   30
+   / \
+  40  50
+
+BFS Traversal: [10, 20, 30, 40, 50]
+DFS Pre-order: [10, 20, 40, 50, 30]
+DFS In-order: [40, 20, 50, 10, 30]
+DFS Post-order: [40, 50, 20, 30, 10]
+=end
+
