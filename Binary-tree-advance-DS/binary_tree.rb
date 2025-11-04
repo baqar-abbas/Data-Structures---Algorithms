@@ -90,3 +90,18 @@ puts "BFS Traversal: #{tree.bfs.inspect}"
 puts "DFS Pre-order: #{tree.pre_order.inspect}"
 puts "DFS In-order: #{tree.in_order.inspect}"
 puts "DFS Post-order: #{tree.post_order.inspect}"
+
+=begin
+Tree Structure:
+      10
+     /  \
+    20   30
+   / \
+  40  50
+
+BFS Traversal: [10, 20, 30, 40, 50]
+DFS Pre-order: [10, 20, 40, 50, 30]
+DFS In-order: [40, 20, 50, 10, 30]
+DFS Post-order: [40, 50, 20, 30, 10]
+=end
+
