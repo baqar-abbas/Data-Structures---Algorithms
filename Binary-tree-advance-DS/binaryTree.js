@@ -84,6 +84,22 @@ class BinaryTree {
     }
     return result;
   }
+
+  // BFS Search (Level-order search)
+  searchBFS(value) {
+    if (!this.root) return false;
+
+    const queue = [this.root];
+
+    while (queue.length) {
+      const current = queue.shift();
+      if (current.value === value) return true;
+
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+    }
+    return false;
+  }
 }
 
 // Quick Demo
@@ -105,6 +121,10 @@ console.log("DFS In-order Traversal:", binaryTree.inOrder());
 // Output: [40, 20, 50, 10, 30]
 console.log("DFS Post-order Traversal:", binaryTree.postOrder());
 // Output: [40, 50, 20, 30, 10]
+// Test searches
+console.log("=== SEARCH OPERATIONS ===");
+console.log("BFS Search for 50:", binaryTree.searchBFS(50)); // true
+console.log("BFS Search for 99:", binaryTree.searchBFS(99)); // false
 
 /* OUTPUT of Binary Tree Data Structure and Traversals: 
 Tree Structure:
@@ -117,4 +137,7 @@ BFS Traversal: [ 10, 20, 30, 40, 50 ]
 DFS Pre-order Traversal: [ 10, 20, 40, 50, 30 ]
 DFS In-order Traversal: [ 40, 20, 50, 10, 30 ]
 DFS Post-order Traversal: [ 40, 50, 20, 30, 10 ]
+=== SEARCH OPERATIONS ===
+BFS Search for 50: true
+BFS Search for 99: false
 */
