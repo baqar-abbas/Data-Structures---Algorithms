@@ -84,6 +84,67 @@ class BinaryTree {
     }
     return result;
   }
+
+  // BFS Search (Level-order search)
+  searchBFS(value) {
+    if (!this.root) return false;
+
+    const queue = [this.root];
+
+    while (queue.length) {
+      const current = queue.shift();
+      if (current.value === value) return true;
+
+      if (current.left) queue.push(current.left);
+      if (current.right) queue.push(current.right);
+    }
+    return false;
+  }
+
+  // DFS Search (using recursion - pre order )
+  searchDFS(value, node = this.root) {
+    if (!node) return false;
+
+    //check current node
+    if (node.value === value) return true;
+
+    // Recursively search left and right subtrees
+    return (
+      this.searchDFS(value, node.left) || this.searchDFS(value, node.right)
+    );
+  }
+
+  // Find Node (returns the node instead of boolean)
+  findNode(value, node = this.root) {
+    if (!node) return null;
+
+    if (node.value === value) return node;
+
+    const leftResult = this.findNode(value, node.left);
+    if (leftResult) return leftResult;
+
+    return this.findNode(value, node.right);
+  }
+
+  // Search with Path (returns the path to the node)
+  searchWithPath(value, node = this.root, path = []) {
+    if (!node) return null;
+
+    // Add current node to path
+    path.push(node.value);
+
+    if (node.value === value) return path;
+
+    // Search left subtree
+    const leftPath = this.searchWithPath(value, node.left, [...path]);
+    if (leftPath) return leftPath;
+
+    // Search right subtree
+    const rightPath = this.searchWithPath(value, node.right, [...path]);
+    if (rightPath) return rightPath;
+
+    return null; // Not found in either subtree
+  }
 }
 
 // Quick Demo
@@ -105,6 +166,20 @@ console.log("DFS In-order Traversal:", binaryTree.inOrder());
 // Output: [40, 20, 50, 10, 30]
 console.log("DFS Post-order Traversal:", binaryTree.postOrder());
 // Output: [40, 50, 20, 30, 10]
+// Test searches
+console.log("=== SEARCH OPERATIONS ===");
+console.log("BFS Search for 50:", binaryTree.searchBFS(50)); // true
+console.log("BFS Search for 99:", binaryTree.searchBFS(99)); // false
+
+console.log("DFS Search for 40:", binaryTree.searchDFS(40)); // true
+console.log("DFS Search for 25:", binaryTree.searchDFS(25)); // false
+
+console.log("Find Node 50:", binaryTree.findNode(50)?.value); // 50
+console.log("Find Node 80:", binaryTree.findNode(80)); // null
+
+console.log("Path to 50:", binaryTree.searchWithPath(50)); // [10, 20, 50]
+console.log("Path to 70:", binaryTree.searchWithPath(70)); // [10, 30, 70]
+console.log("Path to 25:", binaryTree.searchWithPath(25)); // null
 
 /* OUTPUT of Binary Tree Data Structure and Traversals: 
 Tree Structure:
@@ -117,4 +192,14 @@ BFS Traversal: [ 10, 20, 30, 40, 50 ]
 DFS Pre-order Traversal: [ 10, 20, 40, 50, 30 ]
 DFS In-order Traversal: [ 40, 20, 50, 10, 30 ]
 DFS Post-order Traversal: [ 40, 50, 20, 30, 10 ]
+=== SEARCH OPERATIONS ===
+BFS Search for 50: true
+BFS Search for 99: false
+DFS Search for 40: true
+DFS Search for 25: false
+Find Node 50: 50
+Find Node 80: null
+Path to 50: [ 10, 20, 50 ]
+Path to 70: null
+Path to 25: null
 */
