@@ -125,6 +125,26 @@ class BinaryTree {
 
     return this.findNode(value, node.right);
   }
+
+  // Search with Path (returns the path to the node)
+  searchWithPath(value, node = this.root, path = []) {
+    if (!node) return null;
+
+    // Add current node to path
+    path.push(node.value);
+
+    if (node.value === value) return path;
+
+    // Search left subtree
+    const leftPath = this.searchWithPath(value, node.left, [...path]);
+    if (leftPath) return leftPath;
+
+    // Search right subtree
+    const rightPath = this.searchWithPath(value, node.right, [...path]);
+    if (rightPath) return rightPath;
+
+    return null; // Not found in either subtree
+  }
 }
 
 // Quick Demo
@@ -157,6 +177,10 @@ console.log("DFS Search for 25:", binaryTree.searchDFS(25)); // false
 console.log("Find Node 50:", binaryTree.findNode(50)?.value); // 50
 console.log("Find Node 80:", binaryTree.findNode(80)); // null
 
+console.log("Path to 50:", binaryTree.searchWithPath(50)); // [10, 20, 50]
+console.log("Path to 70:", binaryTree.searchWithPath(70)); // [10, 30, 70]
+console.log("Path to 25:", binaryTree.searchWithPath(25)); // null
+
 /* OUTPUT of Binary Tree Data Structure and Traversals: 
 Tree Structure:
       10
@@ -173,4 +197,9 @@ BFS Search for 50: true
 BFS Search for 99: false
 DFS Search for 40: true
 DFS Search for 25: false
+Find Node 50: 50
+Find Node 80: null
+Path to 50: [ 10, 20, 50 ]
+Path to 70: null
+Path to 25: null
 */
