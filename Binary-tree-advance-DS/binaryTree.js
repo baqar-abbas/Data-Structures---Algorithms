@@ -100,6 +100,19 @@ class BinaryTree {
     }
     return false;
   }
+
+  // 2. DFS Search (using recursion - pre order )
+  searchDFS(value, node = this.root) {
+    if (!node) return false;
+
+    //check current node
+    if (node.value === value) return true;
+
+    // Recursively search left and right subtrees
+    return (
+      this.searchDFS(value, node.left) || this.searchDFS(value, node.right)
+    );
+  }
 }
 
 // Quick Demo
@@ -126,6 +139,9 @@ console.log("=== SEARCH OPERATIONS ===");
 console.log("BFS Search for 50:", binaryTree.searchBFS(50)); // true
 console.log("BFS Search for 99:", binaryTree.searchBFS(99)); // false
 
+console.log("DFS Search for 40:", binaryTree.searchDFS(40)); // true
+console.log("DFS Search for 25:", binaryTree.searchDFS(25)); // false
+
 /* OUTPUT of Binary Tree Data Structure and Traversals: 
 Tree Structure:
       10
@@ -140,4 +156,6 @@ DFS Post-order Traversal: [ 40, 50, 20, 30, 10 ]
 === SEARCH OPERATIONS ===
 BFS Search for 50: true
 BFS Search for 99: false
+DFS Search for 40: true
+DFS Search for 25: false
 */
