@@ -1,6 +1,6 @@
 # Data Structures & Algorithms
 
-This repository is A curated collection of hands‑on implementations for core Data Structures and Algorithms.  
+This repository is a curated collection of hands‑on implementations for core Data Structures and Algorithms.  
 Primary language: JavaScript (Node.js). Additional examples in Ruby, C, and C# to demonstrate multi‑language proficiency and implementation patterns across ecosystems. It documents approaches I use to learn, practice, and demonstrate problem solving, complexity awareness, and implementation details for interview‑style and educational challenges.
 
 Purpose
