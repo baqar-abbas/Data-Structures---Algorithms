@@ -138,6 +138,28 @@ class BinaryTree
     nil # Not found in either subtree
   end
 
+  # DELETE OPERATION (Rebuild Approach)
+  def delete(value)
+    return false if @root.nil?
+
+    # Check if value actually exists
+    unless search_bfs(value)
+      puts "Value #{value} not found in the tree."
+      return false
+    end
+
+    puts "Deleting #{value} from tree..."
+
+    # Get all values except the one to delete
+    all_values = bfs.reject { |val| val == value }
+
+    # Clear and rebuild tree
+    @root = nil
+    all_values.each { |val| insert(val) }
+    puts "Successfully deleted #{value}"
+    true
+  end
+
 end
 
 # Demo
@@ -172,6 +194,20 @@ puts "Path to 50: #{tree.search_with_path(50)}" # [10, 20, 50]
 puts "Path to 30: #{tree.search_with_path(30)}" # [10, 30]
 puts "Path to 25: #{tree.search_with_path(25)}" # nil
 
+# Test deleting non-existent value
+puts "\nTrying to delete non-existent value:"
+tree.delete(99)
+
+# Test multiple deletes
+puts "\n=== MULTIPLE DELETES ==="
+tree.delete(20)
+puts "After deleting 20: #{tree.bfs.inspect}" # [10, 40, 50]
+
+# Test deleting root
+puts "\n=== ROOT DELETE ==="
+tree.delete(10)
+puts "After deleting root: #{tree.bfs.inspect}" # [40, 50]
+
 =begin
 Tree Structure:
       10
@@ -194,5 +230,17 @@ Find Node 80:
 Path to 50: [10, 20, 50]
 Path to 30: [10, 30]
 Path to 25:
+Trying to delete non-existent value:
+Value 99 not found in the tree.
+
+=== MULTIPLE DELETES ===
+Deleting 20 from tree...
+Successfully deleted 20
+After deleting 20: [10, 30, 40, 50]
+
+=== ROOT DELETE ===
+Deleting 10 from tree...
+Successfully deleted 10
+After deleting root: [30, 40, 50]
 =end
 
