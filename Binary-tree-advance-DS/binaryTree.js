@@ -145,6 +145,29 @@ class BinaryTree {
 
     return null; // Not found in either subtree
   }
+
+  //  DELETE METHOD
+  delete(value) {
+    if (!this.root) return false;
+
+    // Check if value actually exists
+    if (!this.searchBFS(value)) {
+      console.log(`Value ${value} not found in tree`);
+      return false;
+    }
+
+    console.log(`Deleting ${value} from tree...`);
+
+    // Get all values except the one to delete
+    const allValues = this.traverse().filter((val) => val !== value);
+
+    // Clear and rebuild tree
+    this.root = null;
+    allValues.forEach((val) => this.insert(val));
+
+    console.log(`Successfully deleted ${value}`);
+    return true;
+  }
 }
 
 // Quick Demo
@@ -181,6 +204,10 @@ console.log("Path to 50:", binaryTree.searchWithPath(50)); // [10, 20, 50]
 console.log("Path to 70:", binaryTree.searchWithPath(70)); // [10, 30, 70]
 console.log("Path to 25:", binaryTree.searchWithPath(25)); // null
 
+console.log("Before delete:", binaryTree.traverse()); // [10, 20, 30, 40, 50]
+binaryTree.delete(30);
+console.log("After delete:", binaryTree.traverse()); // [10, 20, 40, 50]
+
 /* OUTPUT of Binary Tree Data Structure and Traversals: 
 Tree Structure:
       10
@@ -202,4 +229,8 @@ Find Node 80: null
 Path to 50: [ 10, 20, 50 ]
 Path to 70: null
 Path to 25: null
+Before delete: [ 10, 20, 30, 40, 50 ]
+Deleting 30 from tree...
+Successfully deleted 30
+After delete: [ 10, 20, 40, 50 ]
 */
