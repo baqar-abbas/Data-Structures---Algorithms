@@ -74,6 +74,57 @@ class BinarySearchTree {
     }
     return results;
   }
+
+  // DELETE Operation
+  delete(value) {
+    this.root = this._deleteNode(this.root, value);
+  }
+
+  _deleteNode(node, value) {
+    if (!node) return null;
+
+    // Search for the node to delete
+    if (value < node.value) {
+      node.left = this._deleteNode(node.left, value);
+    } else if (value > node.value) {
+      node.right = this._deleteNode(node.right, value);
+    } else {
+      // Node found! Handle the 3 cases:
+
+      // Case 1: No children (Leaf Node)
+      if (!node.left && !node.right) {
+        return null;
+      }
+
+      // Case 2: One child
+      if (!node.left) return node.right;
+      if (!node.right) return node.left;
+
+      // Case 3: Two children
+      // Find the inorder successor (smallest in the right subtree)
+      const successor = this._findMin(node.right);
+      node.value = successor.value; // Replace value
+      node.right = this._deleteNode(node.right, successor.value); // Delete successor
+    }
+
+    return node;
+  }
+
+  // Helper: Find minimum value in a subtree
+  _findMin(node) {
+    while (node.left) {
+      node = node.left;
+    }
+    return node;
+  }
+
+  // Helper: Find maximum value in a subtree
+  _findMax(node) {
+    while (node && node.right) {
+      node = node.right;
+    }
+    return node;
+  }
 }
 
 // Create BST
@@ -105,6 +156,28 @@ console.log("Search for 80:", bst.search(80)); // true - Path: 50 → 70 → 80
 // Depth First Search In-order traversal returns SORTED values!
 console.log("\n=== BST DFS IN-ORDER TRAVERSAL ===");
 console.log("In-order Traversal (Sorted):", bst.dfsInOrder()); // [20, 30, 40, 50, 60, 70, 80]
+
+// Case 1: Delete leaf (40)
+bst.delete(40);
+console.log("\nAfter deleting leaf 40:");
+console.log("In-order:", bst.dfsInOrder());
+
+// Case 2: Delete node with one child (20)
+// First reset tree
+const bst2 = new BinarySearchTree();
+[50, 30, 70, 20, 40, 60, 80].forEach((v) => bst2.insert(v));
+console.log("New BST2 Tree", bst2.dfsInOrder());
+bst2.delete(30);
+console.log("\nAfter deleting 30");
+console.log("In-order:", bst2.dfsInOrder());
+
+// Case 3: Delete node with two children (root 50)
+const bst3 = new BinarySearchTree();
+[50, 30, 70, 20, 40, 60, 80].forEach((val) => bst3.insert(val));
+bst3.delete(50);
+console.log("\nAfter deleting root 50 (two children):");
+console.log("In-order:", bst3.dfsInOrder());
+console.log("New root:", bst3.root.value); // Should be 60 (inorder successor)
 
 // Output:
 /* 
